@@ -1,0 +1,7 @@
+if brand = xiaomi then brand = xiaomi
+if function = (string) deep learning and price > (int) 8000 then gpu = RTX2060
+if function = (string) video  then cpu=i3 and type=轻薄
+if people=gameplayer then 144hz = (bool)1
+if hasjob = (bool)1 then type=性能
+if isstudent = (bool)1 then discount=float(0.7)
+if error_factor < (float) 0.1 then rewardmoney = (int)10000

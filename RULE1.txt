@@ -1,0 +1,4 @@
+if personality = kind then prefer = love animal
+if prefer  = love animal then action = don't kill animal
+if action=don't kill animal and sex=male then peopletype=goodboy
+if action=don't kill animal and sex=female then peopletype=goodwomen
