@@ -18,7 +18,7 @@ class ruletable:
     
     def __init__(self,filename):
         with open(filename,'r',encoding="utf-8") as f :
-            self.rule_list=f.readlines()
+            self.rule_list=f.readlines()#many rule rows ,in a list ,each element is a rule
         self.rule_table=pd.DataFrame(np.zeros((len(self.rule_list),13)),columns=["input_type1","input_value1","input_type2","input_value2",
                           "relationship1","relationship2","input_relationship",
                           "result_type1","result_value1","result_type2","result_value2",
@@ -136,9 +136,13 @@ class ruletable:
                 continue  #如果没有找到此标签的规则，那么进行下一标签的查找
             for i in indexlist:
                 if self.condition_judge(i,case):# if the condition is satisfied,then add the result info according to the rule table
-                    result_type=self.rule_table.loc[i,'result_type1']
-                    result_value=self.rule_table.loc[i,'result_value1']
-                    self.result[result_type]=result_value
+                    result_type1=self.rule_table.loc[i,'result_type1']
+                    result_value1=self.rule_table.loc[i,'result_value1']
+                    self.result[result_type1]=result_value1
+                    result_type2=self.rule_table.loc[i,'result_type2']
+                    if result_type2 != 0 :
+                        result_value2 = self.rule_table.loc[i,'result_value2']
+                        self.result[result_type2]=result_value2
         return self.result
 
 
@@ -158,10 +162,11 @@ class ruletable:
                     
 
 if __name__=='__main__':
-    rt=ruletable("RULE1.txt")    
+    rt=ruletable("RULE.txt")    
     rule_table= rt.rule_table
-    case={'personality':'kind','sex':'male'}
+    #case={'personality':'kind','sex':'male'}
     #case={'function': 'deep learning','price':9000,'brand':'xiaomi','people':'gameplayer','isstudent':True,'factor':0.05}
+    case={'function': 'video'}
     #b1=rt.condition_judge(1,case)
     result=rt.reason(case)
     print(result)
